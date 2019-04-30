@@ -1,0 +1,21 @@
+mailer-daemon:    postmaster
+
+postmaster:       root
+nobody:           root
+hostmaster:       root
+usenet:           root
+news:             root
+webmaster:        root
+www:              root
+ftp:              root
+abuse:            root
+noc:              root
+security:         root
+clamav:           root
+mailman-admin:    root
+
+root:             dennis
+info:             dennis
+
+dennis:           system@windows3.de
+
