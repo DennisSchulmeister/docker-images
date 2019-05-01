@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stable-slim
 LABEL maintainer="Dennis Schulmeister-Zimolong <docker@windows3.de>"
 
 RUN apt-get --no-install-recommends -y update && \
@@ -19,5 +19,7 @@ RUN rm -rf /usr/share/doc && \
 COPY aliases /etc/
 COPY bash.bashrc /etc/
 COPY des-prompt.sh /etc/profile.d/
+
+VOLUME /var/log
 
 CMD /bin/bash
