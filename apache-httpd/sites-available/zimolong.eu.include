@@ -1,0 +1,10 @@
+ServerName www.zimolong.eu
+ServerAlias zimolong.eu
+
+# Serve some static files
+DocumentRoot /var/www/zimolong.eu
+<Directory /var/www/template.de>
+	Options MultiViews Indexes
+	AllowOverride All
+	Require all granted
+</Directory>

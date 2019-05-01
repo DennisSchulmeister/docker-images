@@ -1,0 +1,26 @@
+# DES: Wed, May 1st, 2019
+# Default common options for all virtual hosts
+ServerAdmin webmaster@zimolong.eu
+
+# Logging
+# Possible log values: debug, info, notice, warn, error, crit, alert, emerg.
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+LogLevel warn
+
+# Deny access to root filesystem
+<Directory />
+	Options FollowSymLinks
+	AllowOverride None
+	Require all denied
+</Directory>
+
+# Allow subdomains for Strict Transport Security
+<IfModule mod_headers.c>
+	Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+</IfModule>
+
+# Enable nicer directory listings
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+Include sites-available/001_apaxy.include

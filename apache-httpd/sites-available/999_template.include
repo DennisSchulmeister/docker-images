@@ -1,0 +1,57 @@
+ServerName www.template.de
+ServerAlias template.de
+
+# Serve some static files
+DocumentRoot /var/www/template.de
+<Directory /var/www/template.de>
+	Options MultiViews Indexes
+	AllowOverride All
+	Require all granted
+
+	# AuthName "Schaffen Sie es, das Passwort zu erraten?"
+	# AuthType Basic
+	# AuthUserFile sites-available/www.wpvs.de-dhbw.passwd
+	# AuthGroupFile /dev/null
+	# Require valid-user
+</Directory>
+
+## Act as websocket proxy
+#ProxyPass "/umfrage/server" "ws://localhost:8810/"
+#<Directory /srv/www/template.de/umfrage/simple_ws_server>
+#        Require all denied
+#</Directory>
+#<Files /var/www/template.de/umfrage/pollserver.py>
+#	Require all denied
+#</Files>
+
+## Server files via alias
+#Alias /cloud "/var/www/template.de/cloud/"
+#<Directory /var/www/template.de/cloud>
+#	Options +FollowSymlinks
+#	AllowOverride All
+#
+#	<IfModule mod_dav.c>
+#		Dav off
+#	</IfModule>
+#
+#	SetEnv HOME /var/www/template.de/cloud
+#	SetEnv HTTP_HOME /var/www/template.de/cloud
+#</Directory>
+
+## Act as WebDAV server
+#DavLockDB "/var/www/javabuch-dav.lock"
+#
+#<Directory /var/www/template.de/javabuch>
+#       Dav on
+#
+#       AuthType Digest
+#       AuthName "Javabuch"
+#       AuthDigestProvider file
+#       AuthUserFile "/var/www/javabuch-dav.htdigest"
+#       Require valid-user
+#
+##      <Limit GET, POST, PUT, DELETE, CONNECT, OPTIONS, PATCH, PROPFIND, PROPPATCH, MKCOL, COPY, MOVE, LOCK, UNLOCK>
+##              Require valid-user
+##      </Limit>
+#</Directory>
+

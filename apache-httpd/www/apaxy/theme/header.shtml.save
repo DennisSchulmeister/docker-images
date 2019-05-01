@@ -1,0 +1,6 @@
+<h1>Directory Content</h1>
+</p>
+
+<div class="wrapper">
+Index of <!--#echo var="REQUEST_URI" -->
+<!-- we open the `wrapper` element here, but close it in the `footer.html` file -->
