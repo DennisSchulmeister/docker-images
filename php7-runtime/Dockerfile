@@ -5,6 +5,8 @@ RUN apt-get --no-install-recommends -y update && \
     apt-get --no-install-recommends -y dist-upgrade && \
     apt-get --no-install-recommends -y install php7.0-fpm
 
+RUN apt-get --no-install-recommends -y install php7.0-mysql
+
 RUN rm -rf /usr/share/doc && \
     rm -rf /usr/share/info && \
     rm -rf /usr/share/man && \
