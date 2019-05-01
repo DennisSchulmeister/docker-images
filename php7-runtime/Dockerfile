@@ -18,11 +18,15 @@ RUN mkdir -p /var/www && \
 RUN sed -i -E 's/^listen.=.*/listen = 9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 
 # Enable access.log for easier debugging
-RUN sed -i -E 's/^;access\.log.=.*/access.log = \/var\/log\/$pool.access.log/g' /etc/php/7.0/fpm/pool.d/www.conf
+RUN sed -i -E 's/^;access\.log\s*=.*/access.log = \/var\/log\/$pool.access.log/g' /etc/php/7.0/fpm/pool.d/www.conf
+RUN sed -i -E 's/^;access\.format\s*=.*/access.format = "%R - %u %t \\"%m %r\\" -> %f -> %s"/g' /etc/php/7.0/fpm/pool.d/www.conf
+RUN sed -i -E 's/^;catch_workers_output\s*=.*/catch_workers_output = yes/g' /etc/php/7.0/fpm/pool.d/www.conf
 
 EXPOSE 9000
 
 VOLUME /etc/php/7.0/fpm
 VOLUME /var/www
+
+WORKDIR /var/www
 
 CMD /usr/sbin/php-fpm7.0 --nodaemonize -y /etc/php/7.0/fpm/php-fpm.conf -c /etc/php/7.0/fpm/php.ini
