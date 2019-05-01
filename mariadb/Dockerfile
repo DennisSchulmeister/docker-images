@@ -24,4 +24,4 @@ VOLUME /etc/mysql/mariadb.conf.d
 VOLUME /var/lib/mysql
 VOLUME /var/log/mysqld
 
-CMD mysqld
+CMD chown -R mysql:mysql /var/lib/mysql; mysql_install_db; mysqld
