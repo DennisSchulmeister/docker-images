@@ -22,6 +22,9 @@ EXPOSE 3306
 
 VOLUME /etc/mysql/mariadb.conf.d
 VOLUME /var/lib/mysql
-VOLUME /var/log/mysqld
+VOLUME /var/log/mysql
 
-CMD chown -R mysql:mysql /var/lib/mysql; mysql_install_db; mysqld
+COPY startup.sh /
+RUN chmod +x /startup.sh
+
+CMD /startup.sh
