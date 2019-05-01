@@ -17,6 +17,9 @@ RUN mkdir -p /var/www && \
 # Listen on TCP port 9000 instead of Unix socket
 RUN sed -i -E 's/^listen.=.*/listen = 9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 
+# Enable access.log for easier debugging
+RUN sed -i -E 's/^;access\.log.=.*/access.log = \/var\/log\/$pool.access.log/g' /etc/php/7.0/fpm/pool.d/www.conf
+
 EXPOSE 9000
 
 VOLUME /etc/php/7.0/fpm
