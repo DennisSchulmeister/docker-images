@@ -10,10 +10,18 @@ RUN rm -rf /usr/share/doc && \
     rm -rf /usr/share/man && \
     rm -rf /usr/share/vim
 
-COPY mysql.cnf /etc/mysql/conf.d
+RUN mkdir -p /var/run/mysqld && \
+    mkdir -p /var/log/mysql && \
+    chown -R mysql:mysql /var/run/mysqld && \
+    chown -R mysql:mysql /var/log/mysql
 
-VOLUME /var/lib/mysql
+# Bind to all network interfaces
+RUN sed -i -E 's/^bind-address\s*=.*$/bind-address = ::/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 EXPOSE 3306
 
-CMD ["/usr/bin/mysqld_safe", "--console"]
+VOLUME /etc/mysql/mariadb.conf.d
+VOLUME /var/lib/mysql
+VOLUME /var/log/mysqld
+
+CMD mysqld
